@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpeedReader.MainPage"
+             BackgroundColor="#272727"
+             WidthRequest="500"
+             HeightRequest="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0" x:Name="DebugRow" /> <!-- Debug only -->
+            <RowDefinition Height="30" /> <!-- Top Bar -->
+            <RowDefinition Height="*" />  <!-- Speed Text -->
+            <RowDefinition Height="40" /> <!-- Run Button -->
+        </Grid.RowDefinitions>
+        
+        <!-- Top Bar -->
+        <StackLayout Grid.Row="1" Orientation="Horizontal" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="250" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Words Per Minute -->
+                <StackLayout Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button Text="&lt;" Clicked="WordsPerMinuteDecreaseClicked" TextColor="#FEFEFE" />
+                    <Label Text="WPM" TextColor="#FEFEFE" Padding="0,6,0,0"/>
+                    <Label x:Name="WordsPerMinute" Text="" TextColor="#FEFEFE" Padding="0,6,0,0"/>
+                    <Button Text="&gt;" Clicked="WordsPerMinuteIncreaseClicked" TextColor="#FEFEFE"/>
+                </StackLayout>
+                
+                <!-- Text Size -->
+                <StackLayout Grid.Column="1" Orientation="Horizontal"  HorizontalOptions="Center">
+                    <Button Text="&lt;" Clicked="TextDecreaseClicked" TextColor="#FEFEFE" />
+                    <Label Text="Text" TextColor="#FEFEFE" Padding="0,6,0,0"/>
+                    <Label x:Name="TextSize" Text="" TextColor="#FEFEFE" Padding="0,6,0,0"/>
+                    <Button Text="&gt;" Clicked="TextIncreaseClicked" TextColor="#FEFEFE"/>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+        
+        <!-- Main Text -->
+        <Label Grid.Row="2" 
+               x:Name="SpeedText" 
+               TextColor="#FEFEFE" 
+               Text="Speed Reader v1.0" 
+               FontSize="70"
+               HorizontalTextAlignment="Center" 
+               VerticalTextAlignment="center"/>
+
+        <!-- Bottom Bar -->
+        <Button Grid.Row="3" 
+                Clicked="RunClicked" 
+                Text="Run" 
+                BackgroundColor="#929292" 
+                TextColor="#FEFEFE" 
+                Margin="5" />
+    </Grid>
+</ContentPage>
