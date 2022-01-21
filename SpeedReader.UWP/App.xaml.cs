@@ -60,9 +60,6 @@ namespace SpeedReader.UWP
                 rootFrame.NavigationFailed += OnNavigationFailed;
                 Xamarin.Forms.Forms.Init(e);
 
-                ApplicationView.PreferredLaunchViewSize = new Size(500, 300);
-                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
@@ -79,6 +76,12 @@ namespace SpeedReader.UWP
                 // parameter
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
+
+            // Ensure the window size if reasonable
+            var size = new Size { Width = 500, Height = 300 };
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(size);
+            ApplicationView.PreferredLaunchViewSize = size;
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             // Ensure the current window is active
             Window.Current.Activate();
