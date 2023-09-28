@@ -1,0 +1,75 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:SpeedReader.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="SpeedReader.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/open-book.ico"
+        Title="SpeedReader"
+		Width="500"
+		Height="300">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="30" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="40" />
+		</Grid.RowDefinitions>
+
+		<!-- Top Bar -->
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5,0,0">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="250" />
+					<ColumnDefinition Width="250" />
+				</Grid.ColumnDefinitions>
+
+				<!-- Words Per Minute -->
+				<StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+					<Button    Foreground="#FEFEFE" Padding="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="25" Content="&lt;" Command="{Binding WordsPerMinuteDecreaseCommand}" />
+					<TextBlock Foreground="#FEFEFE" Padding="3,0,3,0" VerticalAlignment="Center" Text="WPM" />
+					<TextBlock Foreground="#FEFEFE" Padding="3,0,3,0" VerticalAlignment="Center" Text="{Binding WordsPerMinute}" />
+					<Button    Foreground="#FEFEFE" Padding="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="25" Content="&gt;" Command="{Binding WordsPerMinuteIncreaseCommand}"/>
+				</StackPanel>
+
+				<!-- Text Size -->
+				<StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+					<Button    Foreground="#FEFEFE" Padding="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="25" Content="&lt;" Command="{Binding TextSizeDecreaseCommand}" />
+					<TextBlock Foreground="#FEFEFE" Padding="3,0,3,0" VerticalAlignment="Center" Text="Text" />
+					<TextBlock Foreground="#FEFEFE" Padding="3,0,3,0" VerticalAlignment="Center" Text="{Binding TextSize}" />
+					<Button    Foreground="#FEFEFE" Padding="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="25" Content="&gt;" Command="{Binding TextSizeIncreaseCommand}" />
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+
+		<!-- Main Text -->
+		<TextBlock Grid.Row="1"
+                   x:Name="SpeedText"
+		           Foreground="#FEFEFE"
+                   Text="{Binding Text}"
+                   FontSize="{Binding TextSize}"
+                   HorizontalAlignment="Center"
+			       VerticalAlignment="Center"
+			       TextAlignment="Center"
+				   TextWrapping="Wrap" />
+
+		<!-- Bottom Bar -->
+		<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+			<Button Content="Run"
+					Background="#929292"
+					Foreground="#FEFEFE"
+					Command="{Binding RunCommand}"
+					HorizontalContentAlignment="Center"
+					Width="500" />
+		</StackPanel>
+	</Grid>
+</Window>
