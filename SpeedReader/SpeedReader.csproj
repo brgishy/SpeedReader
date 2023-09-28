@@ -16,12 +16,18 @@
     <None Remove="Assets\open-book.ico" />
   </ItemGroup>
 
-
+  <!-- NativeAOT Only Settings -->
+  <ItemGroup>
+    <DirectPInvoke Include="libHarfBuzzSharp" />
+    <NativeLibrary Include="Native\win-x64\libHarfBuzzSharp.lib" Condition="$(RuntimeIdentifier.StartsWith('win-x64'))" />
+    <DirectPInvoke Include="libSkiaSharp" />
+    <NativeLibrary Include="Native\win-x64\libSkiaSharp.lib" Condition="$(RuntimeIdentifier.StartsWith('win-x64'))" />
+  </ItemGroup>
+  
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.0.4" />
     <PackageReference Include="Avalonia.Desktop" Version="11.0.4" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.4" />
-    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.4" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <PackageReference Include="TextCopy" Version="6.2.1" />
